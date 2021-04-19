@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CakeApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="button_login">Login</string>
+    <string name="name">Full Name</string>
+    <string name="button_sign_up">Sign Up</string>
+    <string name="mostrar_bebidas">Mostrar bebidas</string>
+    <string name="mostrar_todos">Mostrar Todos los productos</string>
+</resources>
