@@ -5,8 +5,7 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.piedrasyartesanias.cakeapp.databinding.ActivityDetailProductBinding
 import com.piedrasyartesanias.cakeapp.models.ProductResponse
-import com.piedrasyartesanias.cakeapp.utils.URL
-import kotlinx.android.synthetic.main.fragment_sign_up.view.*
+import com.piedrasyartesanias.cakeapp.utils.URLBASE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +28,7 @@ class DetailProductActivity : AppCompatActivity() {
         CoroutineScope (Dispatchers.Main).launch {
             this: CoroulineScope
             try {
-                val url = "$URL${product.image}"
+                val url = "$URLBASE${product.image}"
                 Glide.with(
                     this(DetailProductActivity).load(
                         url.into(binding.imageViewItem)

@@ -65,12 +65,13 @@ class LoginFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 try {
                     val responseLogin = withContext(Dispatchers.Default){
-                        val cakeRepository = CakeRepository()
+                        val cakeRepository = CakeRepository(this@LoginFragment.context!!)
                         cakeRepository.login(LoginModel(binding.editTextEmail.text.toString(),binding.editTextPassword.text.toString()))
                     }
 
                     myPreferences.addString(TOKEN,responseLogin.token)
                     startActivity(Intent(this@LoginFragment.context, ShowProductsActivity::class.java))
+                    activity?.finish()
                 }catch (e: Exception){
                     Toast.makeText(this@LoginFragment.context, "${e.message}", Toast.LENGTH_SHORT).show()
                 }

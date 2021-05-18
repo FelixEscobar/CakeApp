@@ -1,5 +1,6 @@
 package com.piedrasyartesanias.cakeapp
 
+import android.content.Context
 import com.piedrasyartesanias.cakeapp.models.LoginModel
 import com.piedrasyartesanias.cakeapp.models.LoginResponseModel
 import com.piedrasyartesanias.cakeapp.models.ProductResponse
@@ -8,12 +9,12 @@ import com.piedrasyartesanias.cakeapp.models.SignUpResponseModel
 import com.piedrasyartesanias.cakeapp.service.CakeService
 import com.piedrasyartesanias.cakeapp.service.ServiceFactory
 
-class CakeRepository {
+class CakeRepository (val context: Context) {
     private var cakeService: CakeService
 
     init {
         val serviceFactory = ServiceFactory()
-        cakeService = serviceFactory.getInstanceCakeService()
+        cakeService = serviceFactory.getInstanceCakeService(context)
     }
 
     suspend fun login(loginModel: LoginModel): LoginResponseModel {
@@ -48,7 +49,7 @@ class CakeRepository {
         return response.isSuccessful
             }
 
-    suspend fun getDrinks(category: Int): List<ProductResponse> {
+    suspend fun getByCategory(category: Int): List<ProductResponse> {
         val response = cakeService.getDrinks(category)
         if (response.isSuccessful){
             return response.body()!!

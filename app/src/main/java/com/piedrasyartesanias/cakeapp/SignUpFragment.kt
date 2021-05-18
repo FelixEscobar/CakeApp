@@ -93,7 +93,7 @@ class SignUpFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 try {
                     val responseSignUp = withContext(Dispatchers.Default) {
-                        val cakeRepository = CakeRepository()
+                        val cakeRepository = CakeRepository(this@SignUpFragment.context!!)
                         cakeRepository.signUp(
                             SignUpModel(
                                 binding.editTextName.text.toString(),
@@ -105,7 +105,7 @@ class SignUpFragment : Fragment() {
 
                     myPreferences.addString(TOKEN,responseSignUp.token)
                     startActivity(Intent(this@SignUpFragment.context, ShowProductsActivity::class.java))
-
+                    activity?.finish()
                 } catch (exception: Exception) {
                     Toast.makeText(this@SignUpFragment.context, "${exception.message}", Toast.LENGTH_SHORT).show()
                 }
